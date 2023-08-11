@@ -6,7 +6,7 @@
 
 <style scoped lang="scss">
 .loader-wrapper {
-  height: calc(100vh - 90px);
+  height: calc(100vh - 110px);
   display: flex;
   justify-content: center;
   align-items: center;
