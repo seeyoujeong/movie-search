@@ -95,6 +95,11 @@ if (typeof route.params.id === "string") {
     align-items: center;
     margin-bottom: 20px;
     gap: 50px;
+
+    @media screen and (max-width: 450px) {
+      flex-direction: column;
+      gap: 20px;
+    }
     .info {
       flex-grow: 1;
       font-size: 18px;
