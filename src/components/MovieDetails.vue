@@ -46,20 +46,21 @@ if (typeof route.params.id === "string") {
     </div>
     <div class="bottom">
       <div>{{ moviesStore.movieDetails.Plot }}</div>
-
       <div>Awards: {{ moviesStore.movieDetails.Awards }}</div>
-    </div>
-    <div
-      v-for="rating in moviesStore.movieDetails.Ratings"
-      :key="rating.Source">
-      {{ rating.Source }}
-      {{ rating.Value }}
+      <div
+        v-for="rating in moviesStore.movieDetails.Ratings"
+        :key="rating.Source">
+        {{ rating.Source }}
+        {{ rating.Value }}
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .movie-details {
+  max-width: 1024px;
+  margin: auto;
   margin-top: 30px;
   .top {
     display: flex;
@@ -96,7 +97,7 @@ if (typeof route.params.id === "string") {
     margin-bottom: 20px;
     gap: 50px;
 
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 650px) {
       flex-direction: column;
       gap: 20px;
     }
@@ -105,6 +106,11 @@ if (typeof route.params.id === "string") {
       font-size: 18px;
       line-height: 1.8;
     }
+  }
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }
 </style>

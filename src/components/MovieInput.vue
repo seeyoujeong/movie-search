@@ -30,20 +30,25 @@ const searchMovies = async () => {
       v-model="title"
       placeholder="영어제목으로 검색해주세요."
       @keydown.enter="searchMovies" />
-    <button @click="searchMovies">검색</button>
+    <button @click="searchMovies">
+      <span class="material-symbols-outlined">search</span>
+    </button>
   </div>
   <div v-if="flag">3글자 이상을 입력해주세요.</div>
 </template>
 
 <style scoped lang="scss">
 .movie-input {
+  max-width: 1024px;
+  margin: 20px auto;
   position: relative;
   height: 50px;
-  border-bottom: 1px solid black;
-  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 40px;
   input {
-    padding: 0 60px 0 10px;
+    padding: 0 60px 0 25px;
     border: none;
+    border-radius: 40px;
     outline: none;
     background-color: white;
     position: absolute;
@@ -59,16 +64,19 @@ const searchMovies = async () => {
   }
   button {
     border: none;
+    border-radius: 40px;
     outline: none;
-    background-color: black;
-    color: white;
+    background-color: white;
     width: 50px;
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 0;
+    right: 10px;
     margin: auto;
     cursor: pointer;
+  }
+  .material-symbols-outlined {
+    font-size: 30px;
   }
 }
 </style>

@@ -17,10 +17,10 @@ if (route.query.s) {
   });
 }
 
-const getMovieDetails = async (id: string) => {
+const showMovieDetails = async (id: string) => {
   router.push(`/details/${id}`);
 };
-const prevMovies = async () => {
+const showPrevMovieList = async () => {
   if (pageNum.value < 2) return;
   if (!route.query.page) pageNum.value = 1;
   pageNum.value -= 1;
@@ -30,7 +30,7 @@ const prevMovies = async () => {
   });
   router.push(`/search?s=${route.query.s}&page=${pageNum.value}`);
 };
-const nextMovies = async () => {
+const showNextMovieList = async () => {
   if (moviesStore.movies.Search.length !== 10) return;
   if (!route.query.page) pageNum.value = 1;
   pageNum.value += 1;
@@ -55,7 +55,7 @@ const nextMovies = async () => {
         v-for="movie in moviesStore.movies.Search"
         :key="movie.imdbID"
         class="movie-item"
-        @click="getMovieDetails(movie.imdbID)">
+        @click="showMovieDetails(movie.imdbID)">
         <div
           v-if="movie.Poster !== 'N/A'"
           class="img-wrapper"
@@ -74,16 +74,16 @@ const nextMovies = async () => {
           </div>
         </ReplaceImg>
       </li>
-      <div class="page-move">
+      <div class="btn-wrapper">
         <button
           class="left-btn"
-          @click="prevMovies">
-          &lt;
+          @click="showPrevMovieList">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
         </button>
         <button
           class="right-btn"
-          @click="nextMovies">
-          &gt;
+          @click="showNextMovieList">
+          <span class="material-symbols-outlined">arrow_forward_ios</span>
         </button>
       </div>
     </ul>
@@ -96,6 +96,8 @@ const nextMovies = async () => {
 
 <style scoped lang="scss">
 .movie-list {
+  max-width: 1024px;
+  margin: auto;
   .total-results {
     display: flex;
     justify-content: flex-end;
@@ -107,12 +109,10 @@ const nextMovies = async () => {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    position: relative;
     .movie-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
       cursor: pointer;
       .img-wrapper {
         position: relative;
@@ -148,7 +148,7 @@ const nextMovies = async () => {
         box-sizing: border-box;
       }
     }
-    .page-move {
+    .btn-wrapper {
       position: fixed;
       display: flex;
       justify-content: space-between;
@@ -163,11 +163,18 @@ const nextMovies = async () => {
       button {
         border: none;
         outline: none;
-        background-color: rgba(#ccc, 0.5);
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
+        color: white;
+        font-size: 36px;
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 58px;
+        height: 58px;
         cursor: pointer;
+      }
+      .left-btn {
+        border-radius: 0 50% 50% 0;
+      }
+      .right-btn {
+        border-radius: 50% 0 0 50%;
       }
     }
   }
