@@ -17,20 +17,20 @@ if (typeof route.params.id === "string") {
   <div
     v-else
     class="movie-details">
-    <div class="top">
-      <div class="left">
+    <div class="title-contents">
+      <div class="title-area">
         <div class="title">{{ moviesStore.movieDetails.Title }}</div>
         <div class="year-runtime">
           <div>{{ moviesStore.movieDetails.Year }}</div>
           <div>{{ moviesStore.movieDetails.Runtime }}</div>
         </div>
       </div>
-      <div class="right">
+      <div class="rating-area">
         <div class="rating">{{ moviesStore.movieDetails.imdbRating }}</div>
         <div class="rated">{{ moviesStore.movieDetails.Rated }}</div>
       </div>
     </div>
-    <div class="middle">
+    <div class="details-contents">
       <img
         v-if="moviesStore.movieDetails.Poster !== 'N/A'"
         :src="moviesStore.movieDetails.Poster" />
@@ -44,7 +44,7 @@ if (typeof route.params.id === "string") {
         <div>Actors: {{ moviesStore.movieDetails.Actors }}</div>
       </div>
     </div>
-    <div class="bottom">
+    <div class="plot-contents">
       <div>{{ moviesStore.movieDetails.Plot }}</div>
       <div>Awards: {{ moviesStore.movieDetails.Awards }}</div>
       <div
@@ -62,12 +62,12 @@ if (typeof route.params.id === "string") {
   max-width: 1024px;
   margin: auto;
   margin-top: 30px;
-  .top {
+  .title-contents {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    .left {
+    .title-area {
       .title {
         font-size: 32px;
         font-weight: 700;
@@ -77,7 +77,7 @@ if (typeof route.params.id === "string") {
         gap: 10px;
       }
     }
-    .right {
+    .rating-area {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -90,7 +90,7 @@ if (typeof route.params.id === "string") {
       }
     }
   }
-  .middle {
+  .details-contents {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -107,7 +107,7 @@ if (typeof route.params.id === "string") {
       line-height: 1.8;
     }
   }
-  .bottom {
+  .plot-contents {
     display: flex;
     flex-direction: column;
     gap: 10px;
