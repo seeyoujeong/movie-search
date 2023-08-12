@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
 
@@ -10,6 +10,12 @@ const title = ref(route.query.s || "");
 const satisfiedLength = ref(true);
 
 const MIN_TITLE_LENGTH = 3;
+
+watch(route, () => {
+  if (route.query.s) {
+    title.value = route.query.s;
+  }
+});
 
 const searchMovies = async () => {
   if (title.value.length < MIN_TITLE_LENGTH) {
