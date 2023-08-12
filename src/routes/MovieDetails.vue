@@ -35,18 +35,19 @@ if (typeof route.params.id === "string") {
         v-if="moviesStore.movieDetails.Poster !== 'N/A'"
         :src="moviesStore.movieDetails.Poster" />
       <AltImage v-else />
-      <div class="info">
-        <div>Genre: {{ moviesStore.movieDetails.Genre }}</div>
-        <div>Country: {{ moviesStore.movieDetails.Country }}</div>
-        <div>Released: {{ moviesStore.movieDetails.Released }}</div>
-        <div>Director: {{ moviesStore.movieDetails.Director }}</div>
-        <div>Writer: {{ moviesStore.movieDetails.Writer }}</div>
-        <div>Actors: {{ moviesStore.movieDetails.Actors }}</div>
+      <div class="detail-wrapper">
+        <div
+          v-for="[key, value] in moviesStore.getDetailItem"
+          :key="key"
+          class="detail-item">
+          <span>{{ key }}</span>
+          {{ value }}
+        </div>
       </div>
     </div>
     <div class="plot-contents">
       <div>{{ moviesStore.movieDetails.Plot }}</div>
-      <div>Awards: {{ moviesStore.movieDetails.Awards }}</div>
+      <div>{{ moviesStore.movieDetails.Awards }}</div>
       <div
         v-for="rating in moviesStore.movieDetails.Ratings"
         :key="rating.Source">
@@ -60,6 +61,7 @@ if (typeof route.params.id === "string") {
 <style scoped lang="scss">
 .movie-details {
   max-width: 1024px;
+  min-width: 250px;
   margin: auto;
   margin-top: 30px;
   .title-contents {
@@ -101,10 +103,18 @@ if (typeof route.params.id === "string") {
       flex-direction: column;
       gap: 20px;
     }
-    .info {
+    .detail-wrapper {
       flex-grow: 1;
-      font-size: 18px;
-      line-height: 1.8;
+      .detail-item {
+        border-bottom: 1px solid;
+        margin-bottom: 10px;
+        span {
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 1.8;
+          margin-right: 10px;
+        }
+      }
     }
   }
   .plot-contents {
