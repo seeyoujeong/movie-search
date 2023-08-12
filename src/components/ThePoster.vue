@@ -24,10 +24,6 @@ defineProps<{
 
 <style lang="scss">
 .img-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 340px;
-  height: 400px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;

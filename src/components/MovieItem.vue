@@ -33,6 +33,12 @@ const showMovieDetails = async (id: string) => {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  :deep(.img-wrapper) {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 400px;
+  }
   .title-wrapper {
     width: 100%;
     white-space: nowrap;

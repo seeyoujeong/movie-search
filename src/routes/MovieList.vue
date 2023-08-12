@@ -10,6 +10,9 @@ const router = useRouter();
 const route = useRoute();
 const pageNum = ref(parseInt(String(route.query.page)) || 1);
 
+const MIN_PAGE_NUM = 2;
+const MAX_MOVIE_LIST = 10;
+
 if (route.query.s) {
   moviesStore.searchMovies({
     s: String(route.query.s),
@@ -21,11 +24,11 @@ const showMovieList = async (move: "prev" | "next") => {
   if (!route.query.page) pageNum.value = 1;
   switch (move) {
     case "prev":
-      if (pageNum.value < 2) return;
+      if (pageNum.value < MIN_PAGE_NUM) return;
       pageNum.value -= 1;
       break;
     case "next":
-      if (moviesStore.movies.Search.length !== 10) return;
+      if (moviesStore.movies.Search.length !== MAX_MOVIE_LIST) return;
       pageNum.value += 1;
       break;
     default:
@@ -45,7 +48,7 @@ const showMovieList = async (move: "prev" | "next") => {
     v-else
     class="movie-list">
     <div class="total-results">
-      검색 결과 개수: {{ moviesStore.movies.totalResults }}
+      검색 결과 개수: {{ moviesStore.movies.totalResults || 0 }}
     </div>
     <ul v-if="moviesStore.movies.Response === 'True'">
       <MovieItem :movies="moviesStore.movies.Search" />
@@ -65,7 +68,6 @@ const showMovieList = async (move: "prev" | "next") => {
     <div v-else-if="moviesStore.movies.Response === 'False'">
       제목과 일치하는 영화가 없습니다.
     </div>
-    <div v-else>영화를 검색해보세요.</div>
   </div>
 </template>
 
