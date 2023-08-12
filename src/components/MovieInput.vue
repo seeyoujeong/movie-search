@@ -34,7 +34,11 @@ const searchMovies = async () => {
       <span class="material-symbols-outlined">search</span>
     </button>
   </div>
-  <div v-if="flag">3글자 이상을 입력해주세요.</div>
+  <div
+    v-if="flag"
+    class="message">
+    3글자 이상을 입력해주세요.
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -78,5 +82,12 @@ const searchMovies = async () => {
   .material-symbols-outlined {
     font-size: 30px;
   }
+}
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  margin-bottom: 10px;
 }
 </style>
