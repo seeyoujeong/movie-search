@@ -20,20 +20,20 @@ if (route.query.s) {
 const showMovieDetails = async (id: string) => {
   router.push(`/details/${id}`);
 };
-const showPrevMovieList = async () => {
-  if (pageNum.value < 2) return;
+const showMovieList = async (move: "prev" | "next") => {
   if (!route.query.page) pageNum.value = 1;
-  pageNum.value -= 1;
-  await moviesStore.searchMovies({
-    s: String(route.query.s),
-    page: pageNum.value,
-  });
-  router.push(`/search?s=${route.query.s}&page=${pageNum.value}`);
-};
-const showNextMovieList = async () => {
-  if (moviesStore.movies.Search.length !== 10) return;
-  if (!route.query.page) pageNum.value = 1;
-  pageNum.value += 1;
+  switch (move) {
+    case "prev":
+      if (pageNum.value < 2) return;
+      pageNum.value -= 1;
+      break;
+    case "next":
+      if (moviesStore.movies.Search.length !== 10) return;
+      pageNum.value += 1;
+      break;
+    default:
+      throw new Error("showMovieList Error");
+  }
   await moviesStore.searchMovies({
     s: String(route.query.s),
     page: pageNum.value,
@@ -77,12 +77,12 @@ const showNextMovieList = async () => {
       <div class="btn-wrapper">
         <button
           class="left-btn"
-          @click="showPrevMovieList">
+          @click="showMovieList('prev')">
           <span class="material-symbols-outlined">arrow_back_ios</span>
         </button>
         <button
           class="right-btn"
-          @click="showNextMovieList">
+          @click="showMovieList('next')">
           <span class="material-symbols-outlined">arrow_forward_ios</span>
         </button>
       </div>
