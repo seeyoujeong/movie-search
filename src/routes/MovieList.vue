@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
 import TheLoader from "~/components/TheLoader.vue";
@@ -13,12 +13,14 @@ const pageNum = ref(parseInt(String(route.query.page)) || 1);
 const MIN_PAGE_NUM = 2;
 const MAX_MOVIE_LIST = 10;
 
-if (route.query.s) {
-  moviesStore.searchMovies({
-    s: String(route.query.s),
-    page: pageNum.value,
-  });
-}
+const loadMovieList = async () => {
+  if (route.query.s) {
+    await moviesStore.searchMovies({
+      s: String(route.query.s),
+      page: parseInt(String(route.query.page)) || 1,
+    });
+  }
+};
 
 const showMovieList = async (move: "prev" | "next") => {
   if (!route.query.page) pageNum.value = 1;
@@ -34,12 +36,14 @@ const showMovieList = async (move: "prev" | "next") => {
     default:
       throw new Error("showMovieList Error");
   }
-  await moviesStore.searchMovies({
-    s: String(route.query.s),
-    page: pageNum.value,
-  });
   router.push(`/search?s=${route.query.s}&page=${pageNum.value}`);
 };
+
+loadMovieList();
+
+watch(route, async () => {
+  await loadMovieList();
+});
 </script>
 
 <template>
