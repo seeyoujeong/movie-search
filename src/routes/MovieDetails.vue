@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
-import TheLoader from "./TheLoader.vue";
-import AltImage from "./AltImage.vue";
+import TheLoader from "~/components/TheLoader.vue";
+import AltImage from "~/components/AltImage.vue";
 
 const moviesStore = useMoviesStore();
 const route = useRoute();

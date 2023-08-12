@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MainPage from "./MainPage.vue";
-import MovieList from "~/components/MovieList.vue";
-import MovieDetails from "~/components/MovieDetails.vue";
+import MovieList from "./MovieList.vue";
+import MovieDetails from "./MovieDetails.vue";
 
 export default createRouter({
   history: createWebHistory(),

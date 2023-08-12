@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
-import TheLoader from "./TheLoader.vue";
-import MovieItem from "./MovieItem.vue";
+import TheLoader from "~/components/TheLoader.vue";
+import MovieItem from "~/components/MovieItem.vue";
 
 const moviesStore = useMoviesStore();
 const router = useRouter();
