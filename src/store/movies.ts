@@ -63,7 +63,20 @@ export const useMoviesStore = defineStore("movies", {
     movieDetails: {} as MovieDetails,
     loading: false,
   }),
-  getters: {},
+  getters: {
+    getDetailItem(state) {
+      const { Genre, Country, Released, Director, Writer, Actors } =
+        state.movieDetails;
+      return Object.entries({
+        Genre,
+        Country,
+        Released,
+        Director,
+        Writer,
+        Actors,
+      });
+    },
+  },
   actions: {
     async searchMovies(params: SearchMoviesParams) {
       if (this.loading) return;
