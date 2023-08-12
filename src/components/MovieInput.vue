@@ -57,7 +57,6 @@ const searchMovies = async () => {
     border: none;
     border-radius: 40px;
     outline: none;
-    background-color: white;
     position: absolute;
     top: 0;
     bottom: 0;
