@@ -7,15 +7,17 @@ const moviesStore = useMoviesStore();
 const router = useRouter();
 const route = useRoute();
 const title = ref(route.query.s || "");
-const flag = ref(false);
+const satisfiedLength = ref(true);
+
+const MIN_TITLE_LENGTH = 3;
 
 const searchMovies = async () => {
-  if (title.value.length < 3) {
-    flag.value = true;
+  if (title.value.length < MIN_TITLE_LENGTH) {
+    satisfiedLength.value = false;
     return;
   }
 
-  flag.value = false;
+  satisfiedLength.value = true;
 
   if (typeof title.value === "string") {
     await moviesStore.searchMovies({ s: title.value });
@@ -35,7 +37,7 @@ const searchMovies = async () => {
     </button>
   </div>
   <div
-    v-if="flag"
+    v-if="!satisfiedLength"
     class="message">
     3글자 이상을 입력해주세요.
   </div>
@@ -44,6 +46,7 @@ const searchMovies = async () => {
 <style scoped lang="scss">
 .movie-input {
   max-width: 1024px;
+  min-width: 250px;
   margin: 20px auto;
   position: relative;
   height: 50px;

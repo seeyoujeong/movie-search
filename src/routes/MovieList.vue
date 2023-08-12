@@ -81,6 +81,7 @@ const showMovieList = async (move: "prev" | "next") => {
     padding: 0 10px;
     margin-bottom: 10px;
     font-size: 15px;
+    min-width: 200px;
   }
   ul {
     display: grid;
