@@ -2,7 +2,7 @@
 import { useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
 import TheLoader from "./TheLoader.vue";
-import ReplaceImg from "./ReplaceImg.vue";
+import AltImage from "./AltImage.vue";
 
 const moviesStore = useMoviesStore();
 const route = useRoute();
@@ -34,7 +34,7 @@ if (typeof route.params.id === "string") {
       <img
         v-if="moviesStore.movieDetails.Poster !== 'N/A'"
         :src="moviesStore.movieDetails.Poster" />
-      <ReplaceImg v-else />
+      <AltImage v-else />
       <div class="info">
         <div>Genre: {{ moviesStore.movieDetails.Genre }}</div>
         <div>Country: {{ moviesStore.movieDetails.Country }}</div>
