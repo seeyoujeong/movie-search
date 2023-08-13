@@ -9,7 +9,7 @@ defineProps<{
 
 const router = useRouter();
 
-const showMovieDetails = async (id: string) => {
+const showMovieDetails = (id: string) => {
   router.push(`/details/${id}`);
 };
 </script>
