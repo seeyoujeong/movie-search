@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { useMoviesStore } from "~/store/movies";
 import TheBtn from "./TheBtn.vue";
 
-const moviesStore = useMoviesStore();
 const router = useRouter();
 const route = useRoute();
 const title = ref(route.query.s || "");
@@ -18,7 +16,7 @@ watch(route, () => {
   }
 });
 
-const searchMovies = async () => {
+const searchMovies = () => {
   if (title.value.length < MIN_TITLE_LENGTH) {
     satisfiedLength.value = false;
     return;
@@ -27,7 +25,6 @@ const searchMovies = async () => {
   satisfiedLength.value = true;
 
   if (typeof title.value === "string") {
-    await moviesStore.searchMovies({ s: title.value });
     router.push(`/search?s=${title.value}`);
   }
 };
