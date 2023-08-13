@@ -92,6 +92,7 @@ watch(route, async () => {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     .btn-wrapper {
+      max-width: 1200px;
       position: fixed;
       display: flex;
       justify-content: space-between;
@@ -113,11 +114,18 @@ watch(route, async () => {
         height: 58px;
         cursor: pointer;
       }
-      .prev-btn {
-        border-radius: 0 50% 50% 0;
-      }
+      .prev-btn,
       .next-btn {
-        border-radius: 50% 0 0 50%;
+        border-radius: 50%;
+      }
+
+      @media screen and (max-width: 1214px) {
+        .prev-btn {
+          border-radius: 0 50% 50% 0;
+        }
+        .next-btn {
+          border-radius: 50% 0 0 50%;
+        }
       }
     }
   }
