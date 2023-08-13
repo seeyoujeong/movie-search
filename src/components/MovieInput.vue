@@ -39,9 +39,6 @@ const searchMovies = async () => {
       v-model="title"
       placeholder="영어제목으로 검색해주세요."
       @keydown.enter="searchMovies" />
-    <!-- <button @click="searchMovies">
-      <span class="material-symbols-outlined">search</span>
-    </button> -->
     <TheBtn @click="searchMovies">search</TheBtn>
   </div>
   <div

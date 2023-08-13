@@ -6,6 +6,7 @@ import ThePoster from "./ThePoster.vue";
 defineProps<{
   movies: Movie[];
 }>();
+
 const router = useRouter();
 
 const showMovieDetails = async (id: string) => {

@@ -22,7 +22,7 @@ defineProps<{
   </AltImage>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .img-wrapper {
   background-repeat: no-repeat;
   background-size: cover;

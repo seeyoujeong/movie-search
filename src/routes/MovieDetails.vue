@@ -94,7 +94,6 @@ if (typeof route.params.id === "string") {
   }
   .details-contents {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     gap: 50px;

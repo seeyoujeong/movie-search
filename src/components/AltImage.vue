@@ -1,5 +1,5 @@
 <template>
-  <div class="replace-img">
+  <div class="alt-image">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="200"
@@ -18,7 +18,7 @@
 </template>
 
 <style scoped lang="scss">
-.replace-img {
+.alt-image {
   display: flex;
   justify-content: center;
   align-items: center;
