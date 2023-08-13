@@ -19,7 +19,7 @@ const showMovieDetails = async (id: string) => {
     :key="movie.imdbID"
     class="movie-item"
     @click="showMovieDetails(movie.imdbID)">
-    <ThePoster :poster="movie.Poster">
+    <ThePoster :poster="movie.Poster.replace('SX300', 'SY700')">
       <div class="title-wrapper">
         {{ movie.Title }}
       </div>

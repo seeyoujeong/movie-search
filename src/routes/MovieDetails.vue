@@ -33,7 +33,7 @@ if (typeof route.params.id === "string") {
     <div class="details-contents">
       <img
         v-if="moviesStore.movieDetails.Poster !== 'N/A'"
-        :src="moviesStore.movieDetails.Poster" />
+        :src="moviesStore.movieDetails.Poster.replace('SX300', 'SY700')" />
       <AltImage v-else />
       <div class="detail-wrapper">
         <div
@@ -102,6 +102,10 @@ if (typeof route.params.id === "string") {
     @media screen and (max-width: 650px) {
       flex-direction: column;
       gap: 20px;
+    }
+
+    img {
+      max-width: 300px;
     }
     .detail-wrapper {
       flex-grow: 1;
