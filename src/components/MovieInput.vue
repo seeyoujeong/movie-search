@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
+import TheBtn from "./TheBtn.vue";
 
 const moviesStore = useMoviesStore();
 const router = useRouter();
@@ -38,9 +39,10 @@ const searchMovies = async () => {
       v-model="title"
       placeholder="영어제목으로 검색해주세요."
       @keydown.enter="searchMovies" />
-    <button @click="searchMovies">
+    <!-- <button @click="searchMovies">
       <span class="material-symbols-outlined">search</span>
-    </button>
+    </button> -->
+    <TheBtn @click="searchMovies">search</TheBtn>
   </div>
   <div
     v-if="!satisfiedLength"
@@ -74,10 +76,8 @@ const searchMovies = async () => {
       color: #ccc;
     }
   }
-  button {
-    border: none;
+  :deep(.the-btn) {
     border-radius: 40px;
-    outline: none;
     background-color: white;
     width: 50px;
     position: absolute;
@@ -85,10 +85,9 @@ const searchMovies = async () => {
     bottom: 0;
     right: 10px;
     margin: auto;
-    cursor: pointer;
-  }
-  .material-symbols-outlined {
-    font-size: 30px;
+    .material-symbols-outlined {
+      font-size: 30px;
+    }
   }
 }
 .message {

@@ -4,6 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
 import TheLoader from "~/components/TheLoader.vue";
 import MovieItem from "~/components/MovieItem.vue";
+import TheBtn from "~/components/TheBtn.vue";
 
 const moviesStore = useMoviesStore();
 const router = useRouter();
@@ -57,16 +58,16 @@ watch(route, async () => {
     <ul v-if="moviesStore.movies.Response === 'True'">
       <MovieItem :movies="moviesStore.movies.Search" />
       <div class="btn-wrapper">
-        <button
+        <TheBtn
           class="prev-btn"
           @click="showMovieList('prev')">
-          <span class="material-symbols-outlined">arrow_back_ios</span>
-        </button>
-        <button
+          arrow_back_ios_new
+        </TheBtn>
+        <TheBtn
           class="next-btn"
           @click="showMovieList('next')">
-          <span class="material-symbols-outlined">arrow_forward_ios</span>
-        </button>
+          arrow_forward_ios
+        </TheBtn>
       </div>
     </ul>
     <div v-else-if="moviesStore.movies.Response === 'False'">
@@ -104,21 +105,16 @@ watch(route, async () => {
       left: 0;
       right: 0;
       margin: auto;
-      button {
-        border: none;
-        outline: none;
+      :deep(.the-btn) {
         color: white;
-        font-size: 36px;
         background-color: rgba(0, 0, 0, 0.3);
         width: 58px;
         height: 58px;
-        cursor: pointer;
       }
       .prev-btn,
       .next-btn {
         border-radius: 50%;
       }
-
       @media screen and (max-width: 1214px) {
         .prev-btn {
           border-radius: 0 50% 50% 0;
