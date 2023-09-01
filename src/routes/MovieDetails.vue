@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
-import TheLoader from "~/components/TheLoader.vue";
+import LoadingSpinner from "~/components/LoadingSpinner.vue";
 import AltImage from "~/components/AltImage.vue";
 
 const moviesStore = useMoviesStore();
@@ -13,7 +13,7 @@ if (typeof route.params.id === "string") {
 </script>
 
 <template>
-  <TheLoader v-if="moviesStore.loading" />
+  <LoadingSpinner v-if="moviesStore.loading" />
   <div
     v-else
     class="movie-details">
