@@ -42,8 +42,8 @@ const showMovieList = async (move: "prev" | "next") => {
 
 loadMovieList();
 
-watch(route, async () => {
-  await loadMovieList();
+watch(route, () => {
+  loadMovieList();
 });
 </script>
 
