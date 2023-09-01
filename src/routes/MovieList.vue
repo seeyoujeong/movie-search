@@ -15,9 +15,9 @@ const MIN_PAGE_NUM = 2;
 const MAX_MOVIE_LIST = 10;
 
 const loadMovieList = async () => {
-  if (route.query.s) {
+  if (route.query.keyword) {
     await moviesStore.searchMovies({
-      s: String(route.query.s),
+      s: String(route.query.keyword),
       page: parseInt(String(route.query.page)) || 1,
     });
   }
@@ -37,7 +37,7 @@ const showMovieList = async (move: "prev" | "next") => {
     default:
       throw new Error("showMovieList Error");
   }
-  router.push(`/search?s=${route.query.s}&page=${pageNum.value}`);
+  router.push(`/search?keyword=${route.query.keyword}&page=${pageNum.value}`);
 };
 
 loadMovieList();

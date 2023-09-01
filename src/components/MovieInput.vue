@@ -5,27 +5,27 @@ import TheBtn from "./TheBtn.vue";
 
 const router = useRouter();
 const route = useRoute();
-const title = ref(route.query.s || "");
+const keyword = ref(route.query.keyword || "");
 const satisfiedLength = ref(true);
 
 const MIN_TITLE_LENGTH = 3;
 
 watch(route, () => {
-  if (route.query.s) {
-    title.value = route.query.s;
+  if (route.query.keyword) {
+    keyword.value = route.query.keyword;
   }
 });
 
 const searchMovies = () => {
-  if (title.value.length < MIN_TITLE_LENGTH) {
+  if (keyword.value.length < MIN_TITLE_LENGTH) {
     satisfiedLength.value = false;
     return;
   }
 
   satisfiedLength.value = true;
 
-  if (typeof title.value === "string") {
-    router.push(`/search?s=${title.value}`);
+  if (typeof keyword.value === "string") {
+    router.push(`/search?keyword=${keyword.value}`);
   }
 };
 </script>
@@ -33,7 +33,7 @@ const searchMovies = () => {
 <template>
   <div class="movie-input">
     <input
-      v-model="title"
+      v-model.trim="keyword"
       placeholder="영어제목으로 검색해주세요."
       @keydown.enter="searchMovies" />
     <TheBtn @click="searchMovies">search</TheBtn>
