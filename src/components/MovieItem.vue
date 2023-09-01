@@ -41,17 +41,17 @@ const showMovieDetails = (id: string) => {
     height: 400px;
   }
   .title-wrapper {
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    height: 30px;
+    color: #fff;
+    background-color: rgba(#000, 0.7);
+    line-height: 2;
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    color: #fff;
-    background-color: rgba(#000, 0.7);
-    height: 30px;
-    line-height: 2;
     padding: 0 20px;
     box-sizing: border-box;
   }

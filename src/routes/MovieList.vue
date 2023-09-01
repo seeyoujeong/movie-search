@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useMoviesStore } from "~/store/movies";
-import TheLoader from "~/components/TheLoader.vue";
 import MovieItem from "~/components/MovieItem.vue";
+import LoadingSpinner from "~/components/LoadingSpinner.vue";
 import TheBtn from "~/components/TheBtn.vue";
 
 const moviesStore = useMoviesStore();
-const router = useRouter();
 const route = useRoute();
+const router = useRouter();
 const pageNum = ref(parseInt(String(route.query.page)) || 1);
 
-const MIN_PAGE_NUM = 2;
+const MIN_PAGE_NUM = 1;
 const MAX_MOVIE_LIST = 10;
 
 const loadMovieList = async () => {
@@ -27,7 +27,7 @@ const showMovieList = async (move: "prev" | "next") => {
   if (!route.query.page) pageNum.value = 1;
   switch (move) {
     case "prev":
-      if (pageNum.value < MIN_PAGE_NUM) return;
+      if (pageNum.value <= MIN_PAGE_NUM) return;
       pageNum.value -= 1;
       break;
     case "next":
@@ -48,7 +48,7 @@ watch(route, () => {
 </script>
 
 <template>
-  <TheLoader v-if="moviesStore.loading" />
+  <LoadingSpinner v-if="moviesStore.loading" />
   <div
     v-else
     class="movie-list">
@@ -94,22 +94,22 @@ watch(route, () => {
     gap: 20px;
     .btn-wrapper {
       max-width: 1200px;
-      position: fixed;
+      width: 100%;
+      height: 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
-      height: 30px;
+      position: fixed;
       top: 0;
+      right: 0;
       bottom: 0;
       left: 0;
-      right: 0;
       margin: auto;
       :deep(.the-btn) {
-        color: white;
-        background-color: rgba(0, 0, 0, 0.3);
         width: 58px;
         height: 58px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.3);
       }
       .prev-btn,
       .next-btn {
